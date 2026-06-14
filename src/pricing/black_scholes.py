@@ -33,6 +33,9 @@ def gamma(S, K, T, r, sigma):
     d1 = calculate_d1(S, K, T, r, sigma)
     return norm.pdf(d1) / (S * sigma * np.sqrt(T))
 
+def vega(S, K, T, r, sigma):
+    d1 = calculate_d1(S, K, T, r, sigma)
+    return S * norm.pdf(d1) * np.sqrt(T)
 
 if __name__ == "__main__":
     price = call_price(
