@@ -37,6 +37,16 @@ def vega(S, K, T, r, sigma):
     d1 = calculate_d1(S, K, T, r, sigma)
     return S * norm.pdf(d1) * np.sqrt(T)
 
+def call_theta(S, K, T, r, sigma):
+    d1 = calculate_d1(S, K, T, r, sigma)
+    d2 = calculate_d2(d1, sigma, T)
+    
+    term1 = - (S * norm.pdf(d1) * sigma) / (2 * np.sqrt(T))
+    term2 = r * K * np.exp(-r * T) * norm.cdf(d2)
+    
+    return term1 - term2
+
+
 if __name__ == "__main__":
     price = call_price(
         S=100,
