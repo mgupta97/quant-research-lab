@@ -29,6 +29,11 @@ def put_delta(S, K, T, r, sigma):
     d1 = calculate_d1(S, K, T, r, sigma)
     return norm.cdf(d1) - 1
 
+def gamma(S, K, T, r, sigma):
+    d1 = calculate_d1(S, K, T, r, sigma)
+    return norm.pdf(d1) / (S * sigma * np.sqrt(T))
+
+
 if __name__ == "__main__":
     price = call_price(
         S=100,
