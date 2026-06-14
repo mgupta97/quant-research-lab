@@ -46,6 +46,12 @@ def call_theta(S, K, T, r, sigma):
     
     return term1 - term2
 
+def call_rho(S, K, T, r, sigma):
+    d1 = calculate_d1(S, K, T, r, sigma)
+    d2 = calculate_d2(d1, sigma, T)
+    
+    return K * T * np.exp(-r * T) * norm.cdf(d2)
+
 
 if __name__ == "__main__":
     price = call_price(
