@@ -3,32 +3,57 @@ import numpy as np
 
 
 ticker = "AAPL"
-assumed_iv = 0.30
 
-data = yf.download(
+stock = yf.Ticker(ticker)
+
+price_data = yf.download(
     ticker,
     period="1y",
     auto_adjust=True,
     progress=False,
 )
 
-data["log_return"] = np.log(
-    data["Close"] / data["Close"].shift(1)
+price_data["log_return"] = np.log(
+    price_data["Close"] / price_data["Close"].shift(1)
 )
 
 historical_volatility = (
-    data["log_return"].std() * np.sqrt(252)
+    price_data["log_return"].std() * np.sqrt(252)
 )
 
-spread = assumed_iv - historical_volatility
+expirations = stock.options
+nearest_expiration = expirations[1]
+
+option_chain = stock.option_chain(nearest_expiration)
+calls = option_chain.calls
+
+current_price = float(price_data["Close"].iloc[-1].iloc[0])
+
+calls["distance_from_spot"] = abs(
+    calls["strike"] - current_price
+)
+
+atm_call = calls.sort_values(
+    "distance_from_spot"
+).iloc[0]
+
+print("\nATM OPTION DATA")
+print(atm_call)
+
+market_iv = atm_call["impliedVolatility"]
+
+spread = market_iv - historical_volatility
 
 print("\n" + "=" * 50)
-print("VOLATILITY ANALYSIS REPORT")
+print("REAL-MARKET VOLATILITY ANALYSIS REPORT")
 print("=" * 50)
 
 print(f"Ticker                : {ticker}")
+print(f"Current Price         : {current_price:.2f}")
+print(f"Nearest Expiration    : {nearest_expiration}")
+print(f"ATM Strike            : {atm_call['strike']}")
 print(f"Historical Volatility : {historical_volatility:.2%}")
-print(f"Assumed Implied Vol   : {assumed_iv:.2%}")
+print(f"Market Implied Vol    : {market_iv:.2%}")
 print(f"IV - HV Spread        : {spread:.2%}")
 
 print("\nInterpretation:")
