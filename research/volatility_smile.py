@@ -68,3 +68,33 @@ plt.savefig(
 )
 
 plt.show()
+
+print("\n" + "=" * 50)
+print("VOLATILITY SMILE RESEARCH SUMMARY")
+print("=" * 50)
+
+max_iv = max(ivs)
+min_iv = min(ivs)
+
+max_strike = strikes[ivs.index(max_iv)]
+min_strike = strikes[ivs.index(min_iv)]
+
+print(f"Underlying Price : {S}")
+print(f"Highest IV       : {max_iv:.4f}")
+print(f"Highest IV Strike: {max_strike}")
+print(f"Lowest IV        : {min_iv:.4f}")
+print(f"Lowest IV Strike : {min_strike}")
+
+print("\nObservation:")
+
+if max_strike != 100:
+    print(
+        "Implied volatility increases away from ATM, "
+        "indicating a volatility smile."
+    )
+else:
+    print(
+        "Maximum implied volatility occurs near ATM."
+    )
+
+print("=" * 50)
