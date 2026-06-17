@@ -1,291 +1,204 @@
 # Quant Research Lab
 
-A quantitative finance research platform built from scratch in Python.
+A quantitative finance research platform built from first principles to explore option pricing, volatility forecasting, market regime detection, and decision-making under uncertainty.
 
-This repository explores option pricing, risk management, implied volatility, Monte Carlo simulation, and volatility research using both theoretical models and real market data.
+## Project Motivation
 
----
+Financial markets are complex systems characterized by uncertainty, changing volatility regimes, and evolving expectations.
 
-# Project Goals
+This project was developed to investigate how statistical models, forecasting techniques, and machine learning methods can be combined to support decision-making under uncertainty.
 
-* Build core quantitative finance models from scratch
-* Understand option pricing theory beyond textbook formulas
-* Validate analytical results using numerical methods
-* Analyze real-world option market data
-* Produce research-grade visualizations and reports
-* Develop a portfolio-quality quant research repository
+The research focuses on:
 
----
+* Option pricing
+* Volatility modeling
+* Regime detection
+* Signal generation
+* Cross-sectional validation
 
-# Features
-
-## Option Pricing
-
-### Black-Scholes Pricing Model
-
-Implemented from scratch:
-
-* European Call Pricing
-* European Put Pricing
-
-### Monte Carlo Pricing
-
-Implemented Monte Carlo simulation for European options and validated convergence against Black-Scholes.
+The broader objective is to study forecasting and uncertainty quantification methods relevant to quantitative finance, operations research, and industrial engineering.
 
 ---
 
-## Greeks
+## Research Questions
 
-Implemented analytically:
+This project explores the following questions:
 
-* Delta
-* Gamma
-* Vega
-* Theta
-* Rho
-
----
-
-## Implied Volatility
-
-Implemented a Newton-Raphson solver to compute implied volatility from market option prices.
-
-Features:
-
-* Call Option IV
-* ATM Option Analysis
-* Real Market Option Chains
+1. Can classical option pricing models be implemented and validated from scratch?
+2. How accurately can volatility be estimated and forecasted?
+3. Do volatility regimes naturally emerge in financial markets?
+4. Does disagreement between model forecasts and market expectations contain predictive information?
+5. Can volatility-based signals generalize across multiple assets?
 
 ---
 
-# Validation Framework
+## Methodology
 
-Analytical formulas validated numerically.
+### Option Pricing
 
-Research scripts include:
+* Black-Scholes Option Pricing Model
+* Call and Put Pricing
+* Greeks
 
-* Delta Validation
-* Gamma Validation
-* Vega Validation
+  * Delta
+  * Gamma
+  * Vega
 
----
+### Numerical Methods
 
-# Research Projects
+* Monte Carlo Simulation
+* Finite Difference Validation
+* Newton-Raphson Implied Volatility Solver
 
-## 1. Vega Strike Experiment
+### Volatility Modeling
 
-Research Question:
+* Historical Volatility
+* Implied Volatility Analysis
+* Volatility Smile Visualization
+* GARCH(1,1) Forecasting
 
-> Does Vega truly peak at-the-money?
+### Regime Detection
 
-Finding:
+* Rule-Based Volatility Regimes
+* K-Means Market Regime Detection
 
-Vega peaked near the forward ATM strike rather than exactly at the spot price.
+### Signal Generation
 
-Generated:
-
-* Vega vs Strike chart
-
----
-
-## 2. Volatility Smile Analysis
-
-Research Question:
-
-> Does implied volatility remain constant across strikes?
-
-Finding:
-
-Higher implied volatility was observed for strikes farther from the underlying price, demonstrating a volatility smile.
-
-Generated:
-
-* Volatility Smile chart
+* Forecast Volatility vs Market Expectations
+* Volatility Signal Engine
+* Cross-Sectional Validation Framework
 
 ---
 
-## 3. Historical vs Implied Volatility Report
-
-Research Question:
-
-> Is the market pricing more or less volatility than history suggests?
-
-Example Result:
-
-| Metric                | Value  |
-| --------------------- | ------ |
-| Historical Volatility | 22.65% |
-| Implied Volatility    | 18.31% |
-| Spread                | -4.34% |
-
-Interpretation:
-
-The market was pricing lower future volatility than recent realized volatility.
-
----
-
-## 4. Multi-Asset IV vs HV Dashboard
-
-Universe:
-
-* AAPL
-* MSFT
-* NVDA
-* AMZN
-* GOOG
-
-Latest Results:
-
-| Ticker | HV     | IV     | Spread |
-| ------ | ------ | ------ | ------ |
-| GOOG   | 28.53% | 35.19% | +6.67% |
-| MSFT   | 25.76% | 29.32% | +3.56% |
-| AMZN   | 30.33% | 32.01% | +1.68% |
-| AAPL   | 22.65% | 22.58% | -0.06% |
-| NVDA   | 35.08% | 33.84% | -1.24% |
-
-Finding:
-
-* GOOG options appeared most expensive relative to historical volatility.
-* NVDA options appeared cheapest relative to historical volatility.
-
-Generated:
-
-* IV-HV Spread Ranking Chart
-
----
-
-## 5. Monte Carlo Convergence Study
-
-Research Question:
-
-> Does Monte Carlo pricing converge to the Black-Scholes solution?
-
-Results:
-
-Black-Scholes:
-
-10.4506
-
-Monte Carlo:
-
-10.4538
-
-Difference:
-
-0.0033
-
-Finding:
-
-Monte Carlo converges closely to the analytical Black-Scholes solution as simulation count increases.
-
-Generated:
-
-* Monte Carlo Convergence Chart
-
----
-
-# Project Structure
+## Project Structure
 
 ```text
 quant-research-lab/
-
-src/
-├── pricing/
-│   ├── black_scholes.py
-│   ├── implied_volatility.py
-│   └── monte_carlo.py
-
-tests/
-├── test_black_scholes.py
-├── test_implied_volatility.py
-└── test_monte_carlo.py
-
-research/
-├── validate_gamma.py
-├── validate_vega.py
-├── vega_experiment.py
-├── volatility_smile.py
-├── hv_vs_iv_report.py
-├── iv_hv_dashboard.py
-├── compare_bs_vs_monte_carlo.py
-├── monte_carlo_convergence.py
-└── figures/
+│
+├── src/
+│   └── pricing/
+│
+├── tests/
+│
+├── research/
+│   ├── figures/
+│   ├── report/
+│   └── experiments/
+│
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-# Technologies
+## Key Results
+
+### Monte Carlo Validation
+
+| Metric              | Value   |
+| ------------------- | ------- |
+| Black-Scholes Price | 10.4506 |
+| Monte Carlo Price   | 10.4538 |
+| Difference          | 0.0033  |
+
+The Monte Carlo engine successfully converged to the analytical Black-Scholes solution.
+
+---
+
+### Volatility Forecasting
+
+| Metric      | Value  |
+| ----------- | ------ |
+| Correlation | 0.9833 |
+
+Results indicate strong volatility persistence.
+
+---
+
+### GARCH Forecasting
+
+| Parameter    | Value  |
+| ------------ | ------ |
+| Omega        | 0.1647 |
+| Alpha        | 0.0879 |
+| Beta         | 0.8545 |
+| Alpha + Beta | 0.9424 |
+
+The model identified significant volatility clustering and persistence.
+
+---
+
+### Cross-Sectional Signal Validation
+
+| Ticker | Win Rate |
+| ------ | -------- |
+| AAPL   | 55.90%   |
+| MSFT   | 52.81%   |
+| NVDA   | 56.74%   |
+| AMZN   | 53.09%   |
+| GOOG   | 54.78%   |
+
+### Average Win Rate
+
+**54.66%**
+
+The signal generalized across all tested assets.
+
+---
+
+## Research Report
+
+A full research report is available in:
+
+```text
+research/report/Quant_Research_Report.pdf
+```
+
+The report documents:
+
+* Methodology
+* Experiments
+* Results
+* Limitations
+* Future Research Directions
+
+---
+
+## Technologies
 
 * Python
 * NumPy
-* SciPy
 * Pandas
+* SciPy
 * Matplotlib
-* PyTest
+* Scikit-Learn
 * yFinance
 
 ---
 
-# Current Progress
+## Future Work
 
-### Quantitative Finance
+Planned extensions include:
 
-* Black-Scholes Pricing
-* Greeks
-* Implied Volatility
-* Volatility Smile Analysis
-* Historical vs Implied Volatility
-* Monte Carlo Pricing
-
-### Research
-
-* Numerical Validation
-* Volatility Research
-* Market Data Analysis
-* Multi-Asset Screening
-
----
-
-# Future Work
-
-## Volatility Forecasting
-
-* Rolling Volatility Models
-* GARCH Models
-* Volatility Regime Detection
-
-## Derivatives Research
-
-* Volatility Surface Construction
-* Local Volatility Models
+* Sharpe Ratio Analysis
+* Maximum Drawdown Evaluation
+* Precision / Recall Metrics
+* Portfolio-Level Backtesting
+* Hidden Markov Models
 * Stochastic Volatility Models
-
-## Quantitative Trading
-
-* Volatility Trading Signals
-* Options Strategy Backtesting
-* Portfolio Risk Analytics
-
-## Machine Learning
-
-* Volatility Prediction
-* Regime Classification
-* Market State Detection
+* Risk-Aware Optimization Frameworks
 
 ---
 
-# Author
+## Author
 
 Mehul Gupta
 
-Master of Business Analytics
-University of Illinois Chicago
+Master of Business Analytics, University of Illinois Chicago
 
-Interests:
+Interested in:
 
-* Quantitative Research
-* Quantitative Trading
 * Operations Research
-* Financial Engineering
-* Applied Machine Learning
+* Quantitative Finance
+* Machine Learning
+* Decision-Making Under Uncertainty
