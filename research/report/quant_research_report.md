@@ -300,3 +300,108 @@ Average performance:
 The consistency across multiple assets suggests that forecast-market volatility disagreement contains useful predictive information.
 
 This represents the strongest empirical finding of the project.
+
+## 5. Limitations
+
+Several limitations should be acknowledged.
+
+### Implied Volatility Availability
+
+Historical option-chain implied volatility data was not available through the selected data source. As a result, a smoothed realized-volatility proxy was used during portions of the signal backtesting framework.
+
+Future work should incorporate historical option-chain data from dedicated options datasets.
+
+### Asset Universe
+
+The cross-sectional validation focused on five large-cap technology stocks:
+
+* AAPL
+* MSFT
+* NVDA
+* AMZN
+* GOOG
+
+Additional testing across sectors, indices, ETFs, commodities, and international markets would provide stronger evidence of robustness.
+
+### Transaction Costs
+
+The framework evaluates predictive accuracy rather than realized trading profitability.
+
+Transaction costs, bid-ask spreads, slippage, and execution constraints were not modeled.
+
+### Model Assumptions
+
+Several models rely on assumptions that may not hold in real markets, including:
+
+* Constant volatility assumptions in Black-Scholes
+* Lognormal return distributions
+* Stationarity assumptions within GARCH estimation
+
+These assumptions simplify implementation but may limit real-world performance.
+
+---
+
+## 6. Future Work
+
+Several extensions could further improve the research platform.
+
+### Volatility Modeling
+
+* EGARCH
+* GJR-GARCH
+* Stochastic Volatility Models
+* Volatility Surface Construction
+
+### Machine Learning
+
+* Hidden Markov Models
+* Regime Switching Models
+* Gradient Boosting Forecasts
+* LSTM Volatility Forecasting
+
+### Portfolio Construction
+
+* Risk Parity Allocation
+* Volatility Targeting
+* Dynamic Position Sizing
+* Portfolio-Level Risk Forecasting
+
+### Options Research
+
+* Volatility Arbitrage Strategies
+* Dispersion Trading
+* Earnings Volatility Analysis
+* Cross-Asset Volatility Relationships
+
+### Operations Research Applications
+
+* Decision-making under uncertainty
+* Stochastic optimization
+* Dynamic resource allocation
+* Risk-aware optimization frameworks
+
+---
+
+## 7. Conclusion
+
+This project developed a quantitative finance research platform from first principles using Python.
+
+The work progressed from analytical option pricing models to volatility forecasting, machine learning regime detection, signal generation, and cross-sectional validation.
+
+Major contributions include:
+
+* Black-Scholes pricing implementation
+* Greeks validation
+* Newton-Raphson implied volatility estimation
+* Monte Carlo pricing and convergence analysis
+* Historical and implied volatility research
+* GARCH volatility forecasting
+* Rule-based and machine-learning regime detection
+* Volatility signal generation
+* Cross-sectional validation across multiple assets
+
+The strongest empirical result was a volatility signal framework that achieved an average win rate of 54.66% across five large-cap technology stocks.
+
+The project demonstrates how forecasting, uncertainty modeling, and statistical learning techniques can be combined to support decision-making in financial markets.
+
+Beyond quantitative finance, the framework illustrates broader themes in uncertainty quantification, predictive modeling, and optimization that are relevant to Operations Research, Industrial Engineering, and Financial Engineering research.
